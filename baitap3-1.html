@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+</head>
+<style>
+    .container {
+        width: 900px;
+    }
+</style>
+
+<body>
+    <div class="container">
+        <h1 style="font-family: tahoma; color: cadetblue;">Game Cờ caro</h1>
+        <h3 id="h3"></h3>
+        <button style="font-size: 20px;" onclick="change()">Change Value</button>
+    </div>
+    <script>
+        var a, b;
+        var caro, mangluutru;
+        var check = 0;
+        function cocaro() {
+            let h3 = document.getElementById('h3')
+            caro = new Array(5)
+            for (var i = 0; i < 5; i++) {
+                caro[i] = new Array(5)
+            }
+            mangluutru = new Array();
+            for (var j = 0; j < caro.length; j++) {
+                for (var k = 0; k < caro.length; k++) {
+                    /*let vitri = {
+                        hang: j,
+                        cot: k
+                    };
+                    mangluutru.push(vitri);*/
+                    h3.innerHTML += ' . ' + '  ';
+                    caro[j][k] = 0;
+                }
+                h3.innerText += '\n'
+            }
+            console.log(caro)
+            //console.log(mangluutru)
+        }
+        function change() {
+            let h3 = document.getElementById('h3')
+            a = prompt("Nhập vị trí hàng: ")
+            b = prompt("Nhập vị trí cột: ")
+            for (var j = 0; j < caro.length; j++) {
+                for (var k = 0; k < caro.length; k++) {
+                    if (j == (a - 1) && k == (b - 1) && check%2==0) {
+                        caro[j][k] = 1;
+                        continue;
+                    }
+                    else if (j == (a - 1) && k == (b - 1) && check%2!=0) {
+                        caro[j][k] = 2;
+                        continue;
+                    }
+                }
+            }
+            h3.innerText = ''
+            for (j = 0; j < caro.length; j++) {
+                for (k = 0; k < caro.length; k++) {
+                    if (caro[j][k] == 1) {
+                        h3.innerHTML += ' X ' + '   ';
+                        continue;
+                    }
+                    else if (caro[j][k] == 2) {
+                        h3.innerHTML += ' O ' + '   ';
+                        continue;
+                    }
+                    h3.innerHTML += ' . ' + '   ';
+                }
+                h3.innerText += '\n'
+            }
+            check++;
+        }
+    </script>
+    <script>
+        cocaro();
+    </script>
+</body>
+</html>
